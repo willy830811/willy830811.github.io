@@ -68,7 +68,6 @@ nav {
 	z-index: 20;
 
 	width: 100%;
-	height: 5rem;
 
 	text-align: center;
 
@@ -92,7 +91,7 @@ nav div.logo img {
 
 nav ul {
 	display: inline-block;
-vertical-align: top;
+	vertical-align: top;
 	margin: 0 1rem;
 	padding: 0;
 
@@ -103,7 +102,7 @@ vertical-align: top;
 nav ul li {
 	display: inline-block;
 	margin: 0 1rem;
-line-height: 5rem;
+	line-height: 5rem;
 	font-size: 1.5rem;
 	
 	color: #FFFFFF;
@@ -188,6 +187,7 @@ nav ul li:hover {
 	vertical-align: middle;
 	width: 40%;
 
+	margin: 2rem 0;
 	padding: 1rem;
 	font-size: 1.5rem;
 	font-family: poppins;
@@ -358,7 +358,6 @@ nav ul li:hover {
 
 .d p {
 	width: 80%;
-	height: 4rem;
 	margin: 0 10%;
 	text-align: center;
 	color: #A0522D; /*深褐*/
@@ -520,15 +519,13 @@ nav ul li:hover {
 }
 
 .fill-form .blank {
-	width: 85%;
+	width: 100%;
 	height: 2rem;
-	float: right;
 }
 
 .fill-form textarea {
-	width: 85%;
-	height: 5rem;
-	float: right;
+	width: 100%;
+	height: 6rem;
 }
 
 .fill-form .send {
@@ -631,6 +628,13 @@ footer h6 {
 
 
 
+
+
+
+
+
+
+
 @media only screen and (max-height: 480px) {
 
 	html {
@@ -717,23 +721,23 @@ footer h6 {
 
 
 @media (orientation: portrait) {
-
+/*
 html {
 	font-size: 24px;
 }
-
+*/
 .b img {
 	width: 100%;
 	margin: 0;
 }
-
+/*
 .b img:hover {
 	width: 100%;
 }
-
+*/
 .b p {
 	width: 70%;
-	margin: 0 15%;
+	margin: 2rem 15%;
 }
 
 .c {

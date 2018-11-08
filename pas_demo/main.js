@@ -9,7 +9,7 @@ $(document).ready(() => {
 
 
 
-//偵測觸控螢幕
+//偵測觸控螢幕 & 放大字體 & 忽略hover
 
 function isMobile() {
 	try{
@@ -20,6 +20,28 @@ function isMobile() {
 	}
 }
 
+function bigFontOnPhone() {
+	if (isMobile() && $(window).height() > $(window).width()) {
+		$('html').css({fontSize: '24px'});
+		$('nav ul li').css({lineHeight: '1.5rem', paddingBottom: '1rem'});
+	} else {
+		$('html').css({fontSize: ''});
+		$('nav ul li').css({lineHeight: '', paddingBottom: ''});
+	}
+}
+
+bigFontOnPhone();
+
+$(window).on('resize', function() {
+	bigFontOnPhone();
+})
+
+$('nav ul li:hover, .a p:hover, .b img:hover, .c .branch-btn:hover, .d .group h3:hover, .detail-btn:hover, .close-btn:hover').css({
+	color: '',
+	backgroundColor: '',
+	width: '',
+	height: ''
+})
 
 
 
@@ -99,45 +121,52 @@ function scaleNavBarHeigh() {
 	//console.log('navBarHeight: ' + navBarHeight);
 }
 
+
 scaleWindowUpperSide();
 scaleEndOfCover();
 scaleNavBarHeigh();
 
 $(window).on('scroll', () => {
 	scaleWindowUpperSide();
-});
+})
 
 $(window).on('resize', () => {
 	scaleWindowUpperSide();
 	scaleEndOfCover();
 	scaleNavBarHeigh();
-});
+})
 
 $(window).on('scroll resize', () => {
 
-	if (windowUpperSide >= endOfCover-2 && windowUpperSideOld < endOfCover-2) {
-		$('nav').animate({
-			top: -navBarHeight + 'px'
-		}, 200);
-		setTimeout("$('nav').css({backgroundColor: 'rgba(0, 0, 0, 0.5)'})", 200);
+	if (isMobile()) {
 
-	} else if (windowUpperSide < endOfCover-2 && windowUpperSideOld >= endOfCover-2) {
-		$('nav').css({
-			backgroundColor: 'transparent'
-		}).animate({
-			top: 0
-		}, 200);
+		if (windowUpperSide >= endOfCover-2 && windowUpperSideOld < endOfCover-2) {
+			$('nav').css({
+				backgroundColor: 'rgba(85, 34, 34, 0.8)'
+			});
+		} else if (windowUpperSide < endOfCover-2) {
+			$('nav').css({
+				backgroundColor: 'rgba(85, 34, 34, ' + (windowUpperSide/endOfCover)*0.8 + ')'
+			});
+		}
+	
+	} else {
+
+		if (windowUpperSide >= endOfCover-2 && windowUpperSideOld < endOfCover-2) {
+			$('nav').animate({
+				top: -navBarHeight + 'px'
+			}, 200);
+			setTimeout("$('nav').css({backgroundColor: 'rgba(85, 34, 34, 0.5)'})", 200);
+		} else if (windowUpperSide < endOfCover-2 && windowUpperSideOld >= endOfCover-2) {
+			$('nav').css({
+				backgroundColor: 'transparent'
+			}).animate({
+				top: 0
+			}, 200);
+		}	
 	}
+})
 
-
-});
-
-if(isMobile()){
-console.log('phone!')
-}
-
-else{
-console.log('pc!')
 $('.calling-navbar').on('mouseenter', () => {
 
 	if (windowUpperSide >= endOfCover-2) {
@@ -145,19 +174,15 @@ $('.calling-navbar').on('mouseenter', () => {
 			top: 0
 		}, 200);
 	}
-});
+})
 
 $('nav').on('mouseleave', () => {
-
 	if (windowUpperSide > endOfCover-2) {
 		$('nav').animate({
 			top: -navBarHeight + 'px'
 		}, 200);
 	}
-});
-
-}
-
+})
 
 
 
@@ -173,19 +198,23 @@ $('nav').on('mouseleave', () => {
 
 
 //滾動語法
-$('nav ul a').on('click', function() {
-	jump(this);
-});
+$('nav ul a').on('click', function(event) {
 
-function jump(element) {
-	let tag = '#' + $(element).attr('id').substr(7);
+	let tag = '#' + $(event.currentTarget).attr('id').substr(7);
 
-	$('body, html').animate({
-		scrollTop: $(tag).position().top
-	}, 800);
-}
+	if (isMobile()) {
+		$('body, html').animate({
+			scrollTop: $(tag).position().top - $('nav').height()
+		}, 800);
+	} else {
+		$('body, html').animate({
+			scrollTop: $(tag).position().top
+		}, 800);
+	}
+})
 
 
+	
 
 
 
@@ -282,7 +311,7 @@ $('.branch-btn').on('click', event => {
 
 
 //banner d--product區語法
-	//自動生成gorup欄位
+
 let groupName = ['group1', 'group2', 'group3', 'group4', 'group5']; //加入新元件後可自行改參數
 let groupImgNumber = [5, 4, 3, 2, 0]; //加入新元件後可自行改參數
 let thumbnailWidth;
@@ -295,6 +324,22 @@ for (let i = 0; i < groupName.length; i++) {
 	newEl.appendChild(newText);
 	$('.d .group').append(newEl);
 }
+
+//網頁開啟
+divProducer();
+eventListener();
+imgProducer();
+nameProducer();
+groupBtnUp();
+
+$('.group h3').on('click', event => {
+	productGroup = $(event.currentTarget).index();
+	divProducer();
+	eventListener();
+	imgProducer();
+	nameProducer();
+	groupBtnUp();
+})
 
 function divProducer() {
 	let divString = '';
@@ -325,7 +370,7 @@ function imgProducer() {
 			let imgHeight = $('.d .thumbnail div img').eq(i).height();
 			let imgWidth = $('.d .thumbnail div img').eq(i).width();
 
-			if(imgHeight > imgWidth) {
+			if (imgHeight > imgWidth) {
 				$('.d .thumbnail div img').eq(i).addClass('byHeight');
 			} else {
 				$('.d .thumbnail div img').eq(i).addClass('byWidth');
@@ -340,12 +385,12 @@ function nameProducer() {
 	var xhr = new XMLHttpRequest();
 
 	xhr.onload = function() {
-		//if (xhr.status === 200) {
-		let productsNames = xhr.responseText.split(',');
-		for (let j = 0; j < groupImgNumber[productGroup]; j++) {
-			$('.d .thumbnail p').eq(j).html(productsNames[j]);
+		if (xhr.status === 200) {
+			let productsNames = xhr.responseText.split(',');
+			for (let j = 0; j < groupImgNumber[productGroup]; j++) {
+				$('.d .thumbnail p').eq(j).html(productsNames[j]);
+			}
 		}
-		//}
 	};
 	
 	xhr.open("GET", "test.php?productGroup=" + productGroup, true);
@@ -364,26 +409,12 @@ function groupBtnUp() {
 	})
 }
 
-//網頁開啟
-divProducer();
-eventListener();
-imgProducer();
-nameProducer();
-groupBtnUp();
-
-$('.group h3').on('click', event => {
-	productGroup = $(event.currentTarget).index();
-	divProducer();
-	eventListener();
-	imgProducer();
-	nameProducer();
-	groupBtnUp();
-})
 
 
 $('.thumbnail .for-product').on('click', function() {
 	callEnlargement(event);
 })
+
 
 function callEnlargement(event) {
 	let imgSrc = $(event.currentTarget).children().attr('src');
@@ -399,7 +430,15 @@ function callEnlargement(event) {
 		width: $(window).width()
 	})
 
+
+
+
 	if ( $('.enlargement img').height()/$('.enlargement img').width() > $(window).height()/$(window).width()) {
+		console.log('a');
+		console.log($('.enlargement img').height());
+		console.log($('.enlargement img').width());
+		console.log($(window).height());
+		console.log($(window).width());
 		$('.enlargement img').css({
 			height: '80%'
 		})
@@ -409,8 +448,13 @@ function callEnlargement(event) {
 			})
 		);
 	} else {
+		console.log('b');
+		console.log($('.enlargement img').height());
+		console.log($('.enlargement img').width());
+		console.log($(window).height());
+		console.log($(window).width());
 		$('.enlargement img').css({
-			width: '80%',
+			width: '80%'
 		})
 		$(document).ready(
 			$('.enlargement img').css({
@@ -418,6 +462,7 @@ function callEnlargement(event) {
 			})
 		);
 	}
+
 
 	$('.enlargement h2').css({
 		top: ($(window).height()/2 - $('.enlargement img').height()/2) + 'px'
@@ -440,9 +485,38 @@ $(window).on('resize', function() {
 		width: $(window).width()
 	})
 
-	$('.enlargement img').css({
-		top: ($(window).height()/2 - $('.enlargement img').height()/2) + 'px'
-	})
+
+
+	if ( $('.enlargement img').height()/$('.enlargement img').width() > $(window).height()/$(window).width()) {
+		console.log('a');
+		console.log($('.enlargement img').height());
+		console.log($('.enlargement img').width());
+		console.log($(window).height());
+		console.log($(window).width());
+//		$('.enlargement img').css({
+//			height: '80%'
+//		})
+/*		$(document).ready(
+			$('.enlargement img').css({
+				top: ($(window).height()/2 - $('.enlargement img').height()/2) + 'px'
+			})
+		);*/
+	} else {
+		console.log('b');
+		console.log($('.enlargement img').height());
+		console.log($('.enlargement img').width());
+		console.log($(window).height());
+		console.log($(window).width());
+//		$('.enlargement img').css({
+//			width: '80%'
+//		})
+/*		$(document).ready(
+			$('.enlargement img').css({
+				top: ($(window).height()/2 - $('.enlargement img').height()/2) + 'px'
+			})
+		);*/
+	}
+	
 
 	$('.enlargement h2').css({
 		top: ($(window).height()/2 - $('.enlargement img').height()/2) + 'px'
