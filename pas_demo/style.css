@@ -66,11 +66,8 @@ nav {
 	position: fixed;
 	top: 0;
 	z-index: 20;
-
-	width: 100%;
-
 	text-align: center;
-
+	width: 100%;
 }
 
 nav div.logo {
@@ -84,19 +81,11 @@ nav div.logo img {
 	max-height: 5rem;
 }
 
-/* {
-	margin: 0.5rem;
-	grid-area: left;
-}*/
-
 nav ul {
 	display: inline-block;
 	vertical-align: top;
 	margin: 0 1rem;
 	padding: 0;
-
-
-
 }
 
 nav ul li {
@@ -115,10 +104,17 @@ nav ul li {
 	-o-transition: color 0.4s; /* Opera */
 }
 
-nav ul li:hover {
+nav ul li:not(.no-hover):hover, nav ul li:active {
 	color: #FF9955; /*標題橘*/ /*原#40E0D0 亮藍*/
 }
 
+.arrow {
+	position: fixed;
+	top:0 ;
+	right: 2%;
+	width: 5rem;
+	z-index: 9;
+}
 
 .banner, footer {
 	position: relative;
@@ -172,9 +168,8 @@ nav ul li:hover {
 	-o-transition: background-color 0.6s, color 0.6s; /* Opera */
 }
 
-.a p:hover {
+.a p:not(.no-hover):hover {
 	background-color: rgba(0, 0, 0, 0.2);
-
 }
 
 
@@ -209,7 +204,7 @@ nav ul li:hover {
 	-o-transition: width 0.3s; /* Opera */
 }
 
-.b img:hover {
+.b img:not(.no-hover):hover {
 	width: 50%;
 }
 
@@ -235,7 +230,7 @@ nav ul li:hover {
 	-o-transition: background-color 0.2s, height 0.3s; /* Opera */
 }
 
-.c .branch-btn:hover {
+.c .branch-btn:not(.no-hover):hover, .c .branch-btn:active {
 	background-color: #FFC0CB; /*深粉紅*/
 	height: 3rem;
 }
@@ -289,7 +284,7 @@ nav ul li:hover {
 	"d_group d_thumbnail";
 	grid-template-columns: 1fr 4fr;
 
-	background-image: url("back.png");
+	background-image: url("image/back.png");
 	background-size: 75px 75px;
 }
 
@@ -320,7 +315,7 @@ nav ul li:hover {
 	-o-transition: width 0.3s; /* Opera */
 }
 
-.d .group h3:hover {
+.d .group h3:not(.no-hover):hover, .d .group h3:active {
 	width: 120%;
 	background-color: #FFC0CB /*深粉紅*/;
 }
@@ -344,16 +339,26 @@ nav ul li:hover {
 	border: 2px solid #999999; /*灰*/
 	background-color: #FFFFFF;
 	cursor: crosshair;
-
-
-	transition: box-shadow 0.2s;
-	-moz-transition: box-shadow 0.2s; /* Firefox 4 */
-	-webkit-transition: box-shadow 0.2s; /* Safari and Chrome */
-	-o-transition: box-shadow 0.2s; /* Opera */
+	box-shadow: 3px 3px 12px gray;
 }
 
-.d .thumbnail .for-product:hover {
-	box-shadow: 3px 3px 12px gray;
+.d .thumbnail .for-product img {
+	position: absolute;
+}
+
+.d .thumbnail .for-product .magnifier {
+	z-index: 1;
+	opacity: 0;
+
+
+	transition: opacity 0.2s;
+	-moz-transition: opacity 0.2s; /* Firefox 4 */
+	-webkit-transition: opacity 0.2s; /* Safari and Chrome */
+	-o-transition: opacity 0.2s; /* Opera */
+}
+
+.d .thumbnail .for-product .magnifier:not(.no-hover):hover, .d .thumbnail .for-product .magnifier:active {
+	opacity: 1;
 }
 
 .d p {
@@ -365,22 +370,12 @@ nav ul li:hover {
 	background-color: rgba(255, 255, 255, 0.6);
 }
 
-.d .thumbnail img.byWidth {
-	width: 100%;
-}
-
-.d .thumbnail img.byHeight {
-	height: 100%;
-}
-
-
 .enlargement {
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 30;
 	background-color: rgba(0, 0, 0, 0.5);
-
 }
 
 .enlargement img {
@@ -451,12 +446,19 @@ nav ul li:hover {
 	-o-transition: background-color 0.2s; /* Opera */
 }
 
-.detail-btn:hover, .close-btn:hover {
+.detail-btn:not(.no-hover):hover, .close-btn:not(.no-hover):hover .detail-btn:active, .close-btn:active {
 	background-color: transparent;
 	color: #A0522D; /*深褐*/
 }
 
+.load_aarl {
+	height: 15rem;
+	overflow-x: hidden;
+	border-bottom: 0.25rem dotted #A0522D; /*深褐*/
+}
+
 .load_aarl table {
+	width: 100%;
 	padding: 2rem;
 	background-color: rgba(255, 255, 255, 0.4);
 	columns: 
@@ -555,7 +557,7 @@ footer h6 {
 	margin: 0;
 }
 
-.footer_logo {
+.footer-logo {
 	width: 6rem;
 
 }
@@ -721,20 +723,11 @@ footer h6 {
 
 
 @media (orientation: portrait) {
-/*
-html {
-	font-size: 24px;
-}
-*/
 .b img {
 	width: 100%;
 	margin: 0;
 }
-/*
-.b img:hover {
-	width: 100%;
-}
-*/
+
 .b p {
 	width: 70%;
 	margin: 2rem 15%;
@@ -788,6 +781,10 @@ html {
 
 .application, .seminar, .partners {
 	padding: 2% 4%;
+}
+
+.application img {
+	width: 90%;
 }
 
 .fill-form {
