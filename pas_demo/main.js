@@ -8,7 +8,6 @@ $(document).ready(() => {
 
 
 
-
 //偵測觸控螢幕 & 放大字體 & 忽略hover
 
 function isMobile() {
@@ -414,7 +413,9 @@ function nameProducer() {
 
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			let productsNames = xhr.responseText.split(',');
+			console.log(xhr.responseText);
+			let productsNames = xhr.responseText.split('/');
+			console.log(productsNames);
 			for (let j = 0; j < groupImgNumber[productGroup]; j++) {
 				$('.d .thumbnail p').eq(j).html(productsNames[j]);
 			}

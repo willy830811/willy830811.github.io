@@ -18,7 +18,7 @@ $a1 = array(
 $a2 = array(
 'Water Removal from Oil Fuel Hydrocarbon Liquid',
 'Fuel Oil Auto Sampling System',
-'Pump',
+'Pump'
 );
 
 $a3 = array(
@@ -32,11 +32,13 @@ $productGroup = 'a'.$_GET['productGroup'];
 
 $arr = '';
 foreach ($$productGroup as $value) {
-	$arr = $arr.$value.',';
+	$arr = $arr.$value.'/';
 }
 $arr = substr($arr, 0, -1);
 
 echo $arr;
+
+//echo $$productGroup;
 
 
 
