@@ -1,0 +1,37 @@
+* {
+	font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-SB", "sans-serif";
+}
+
+.hide {
+	display: none;
+}
+
+.put_center {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
+#entrance img {
+	width: 50%;
+}
+
+#record table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+#calendar td:hover {
+	border: 3px black solid;
+}
+
+.red_bg {
+	background-color: red;
+}
+
+.black_bd {
+	border: 3px black solid;
+}

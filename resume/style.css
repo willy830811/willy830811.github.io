@@ -1,0 +1,216 @@
+* {
+	font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-SB", "sans-serif";
+}
+
+.hide {
+	display: none;
+}
+
+.put_middle::before {
+	content:'';
+	display: inline-block;
+	height: 100%;
+	width: 0;
+	vertical-align: middle;
+}
+
+.put_middle_sub {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.simple_put_middle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
+
+
+/*標題*/
+#header {
+	height: 1000px;
+}
+
+#header h1 {
+	background-color: #055;
+	color: #FFF;
+	opacity: 0.8;
+}
+
+
+
+
+/*自傳*/
+#biography .row {
+	position: relative;
+	height: 20rem;
+	background-color: #DDD;
+}
+
+
+
+#biography #hide_bar {
+	position: absolute;
+
+	height: 100%;
+	width: 50vh;
+
+	overflow: hidden;
+}
+
+#biography #hide_bar img {
+	position: absolute;
+	height: 100%;
+
+	z-index: 2;
+	pointer-events: none;
+
+	transform: translate(-100%, 0);
+
+	-webkit-transition: transform 2s;
+}
+
+
+#biography #hide_bar img.hide_bar_move {
+	transform: translate(100%, 0);
+}
+
+
+
+#biography #big_head {
+	position: relative;
+	height: 100%;
+	width: 100%;
+
+	overflow: hidden;
+}
+
+#biography #big_head img.me {
+	position: absolute;
+
+	height: 100%;
+	
+	left: 50%;
+	transform: translate(-50%, 0);
+
+	opacity: 1;
+
+	border-radius: 50%;
+	z-index: 1;
+
+	/*transition: left 5s, transform 5s;*/
+	-webkit-transition: left 2s, transform 2s, opacity 2s;
+	/*-moz-transition: left 5s, transform 5s;*/
+	/*-o-transition: left 5s, transform 5s;*/
+}
+
+
+#biography #big_head img.frame {
+	position: absolute;
+
+	height: 100%;
+	
+	left: 50%;
+	transform: translate(-10rem, 0);
+
+	z-index: 3;
+	pointer-events: none;
+
+	/*transition: left 5s, transform 5s;*/
+	-webkit-transition: left 2s, transform 2s, opacity 2s;
+	/*-moz-transition: left 5s, transform 5s;*/
+	/*-o-transition: left 5s, transform 5s;*/
+}
+
+
+#biography #big_head img.big_head_move {
+	left: 0;
+	transform: translate(0, 0);
+}
+
+
+#biography #big_head img.big_head_wipe {
+	opacity: 0;
+}
+
+
+/*簡歷*/
+#experience h2 {
+	margin-bottom: 5rem;
+}
+
+
+#bar {
+	width: 90%;
+	height: 3px;
+	background-color: #000;
+
+	;
+}
+
+.dot {
+	width: 20px;
+	height: 20px;
+	background-color: #000;
+	border-radius: 50%;
+	position: absolute;
+	top: calc(50% - 10px);
+}
+
+.dot img {
+	position: absolute;
+	transform: translate(-50%, -5rem);
+	height: 5rem;
+}
+
+.bubble {
+
+}
+
+#contact_me {
+	background-color: #666;
+}
+
+.contact-icon {
+	width: 15%;
+}
+
+
+/*技能*/
+
+.skill_bar {
+	background-color: #555;
+}
+
+.skill_bar_content {
+	display: none;
+}
+
+
+/*作品*/
+.carousel-caption {
+	background-color: #000;
+	opacity: 0.5;
+
+	top: 50%;
+	transform: translate(0, -50%);
+
+	height: 5rem;
+}
+
+
+
+
+
+/*
+.carousel-caption h5{
+	position: absolute;
+
+	top:50%;
+	transform: translate(0, -50%);
+}
+*/

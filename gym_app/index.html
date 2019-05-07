@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--BOOTSTRAP-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+		<!--VUE-->
+		<script src="https://unpkg.com/vue"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+		<!--CSS-->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<!--FONTS-->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<!--TITLE-->
+		<link rel="shortcut icon" type="image/x-icon" href="">
+
+		<title>INDEX</title>
+	</head>
+
+	<body>
+		<div id="full">
+
+		<div class="row">
+
+			<div class="col-md-3"></div>
+
+			<div id="main" class="col-md-6">
+
+				<div id="entrance" class="text-center" v-if="isActive_0">
+					<h2 class="my-3">您今天想要練哪個部位?</h2>
+						<img class="rounded-circle" src="image/chest.jpg" v-on:click="enter_menu('chest')">胸<br>
+						<img class="rounded-circle" src="image/back.jpg" v-on:click="enter_menu('back')">背<br>
+						<img class="rounded-circle" src="image/leg.jpg" v-on:click="enter_menu('leg')">腿<br>
+					<button class="btn btn-primary my-1" v-on:click="enter_calendar">看我的健身紀錄</button>
+				</div>
+
+
+
+				<div id="menu" class="text-center" v-if="isActive_1">
+					<h2 class="my-3">設定今天的菜單</h2>
+					<div class="my-3" v-for="position in selected_positions">
+
+						{{position.name}}<br>
+						<table class="d-inline">
+							<tr>
+								<td><button class="btn btn-primary btn-sm" v-on:click="add(position.name, 'reps')">＋</button></td>
+								<td class="w-50">{{position.reps}}次</td>
+								<td><button class="btn btn-primary btn-sm" v-on:click="reduce(position.name, 'reps')">－</button></td>
+							</tr>
+							<tr>
+								<td><button class="btn btn-primary btn-sm" v-on:click="add(position.name, 'sets')">＋</button></td>
+								<td class="w-50">{{position.sets}}組</td>
+								<td><button class="btn btn-primary btn-sm" v-on:click="reduce(position.name, 'sets')">－</button></td>
+							</tr>
+							<tr>
+								<td><button class="btn btn-primary btn-sm" v-on:click="add(position.name, 'weight')">＋</button></td>
+								<td class="w-50">{{position.weight * 5}}Kg</td>
+								<td><button class="btn btn-primary btn-sm" v-on:click="reduce(position.name, 'weight')">－</button></td>
+							</tr>
+						</table>
+					</div>
+
+					<input type="checkbox" v-model="save_menu">自動保存菜單
+					<button class="btn btn-primary my-1" v-on:click="enter_course">開始運動</button><br>
+					<button class="btn btn-primary my-1" v-on:click="back">回上頁</button>
+				</div>
+				
+
+
+				<div  id="course" class="text-center" v-if="isActive_2">
+					<h2 class="my-3">已完成的項目請打勾</h2>
+					<div class="d-inline">
+						<div class="my-1" v-for="position in selected_positions">
+							<input type="checkbox" v-bind:value="position" v-model="checked_positions">{{position.name}}：{{position.reps}}次 X	{{position.sets}}組 X {{position.weight * 5}}Kg
+						</div>
+					</div>
+					
+					<button class="btn btn-primary my-1" v-on:click="enter_conclusion">結束今天的運動</button>
+					<button class="btn btn-primary my-1" v-on:click="back">回上頁</button>
+				</div>
+
+
+				<div  id="conclusion" class="text-center" v-if="isActive_3">
+					<h2 class="my-3">您今天已完成：</h2>
+					<div class="my-1" v-for="position in checked_positions">
+						{{position.name}}：{{position.reps}}次 X	{{position.sets}}組 X {{position.weight * 5}}Kg
+					</div>
+					<button class="btn btn-primary my-1" v-on:click="back">回首頁</button>
+				</div>
+
+				<div id="record" class="text-center" v-if="isActive_4">
+					<h2 class="my-3">健身記錄</h2>
+
+					<div class="mt-3">
+						<select v-model.number="calendar_year">
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+						</select>年
+							
+						<select v-model.number="calendar_month">
+							<option value="0">Jan.</option>
+							<option value="1">Feb.</option>
+							<option value="2">Mar.</option>
+							<option value="3">Apr.</option>
+							<option value="4">May</option>
+							<option value="5">Jun.</option>
+							<option value="6">Jul.</option>
+							<option value="7">Aug.</option>
+							<option value="8">Sep.</option>
+							<option value="9">Oct.</option>
+							<option value="10">Nov.</option>
+							<option value="11">Dec.</option>
+						</select>月
+					</div>
+
+					<div class="mx-5 mb-3">
+						<table>
+							<tr>
+								<th>SUN</th>
+								<th>MON</th>
+								<th>TUE</th>
+								<th>WED</th>
+								<th>THR</th>
+								<th>FRI</th>
+								<th>SAT</th>
+							</tr>
+							<tr id="calendar" v-for="week in this_month_calendar">
+								<td v-on:click="call_someday_record(week[0])" v-bind:class="judge_content(week[0])">{{week[0]}}</td>
+								<td v-on:click="call_someday_record(week[1])" v-bind:class="judge_content(week[1])">{{week[1]}}</td>
+								<td v-on:click="call_someday_record(week[2])" v-bind:class="judge_content(week[2])">{{week[2]}}</td>
+								<td v-on:click="call_someday_record(week[3])" v-bind:class="judge_content(week[3])">{{week[3]}}</td>
+								<td v-on:click="call_someday_record(week[4])" v-bind:class="judge_content(week[4])">{{week[4]}}</td>
+								<td v-on:click="call_someday_record(week[5])" v-bind:class="judge_content(week[5])">{{week[5]}}</td>
+								<td v-on:click="call_someday_record(week[6])" v-bind:class="judge_content(week[6])">{{week[6]}}</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="my-1" v-for="data in record[current_read_record]">
+						{{data.name}}<br>
+						{{data.reps}}次 X {{data.sets}}組 X {{data.weight}}Kg
+					</div>
+						
+
+					<p v-if="record[current_read_record] == undefined">沒有此日的運動紀錄</p>
+
+					<button class="btn btn-primary my-1" v-on:click="back">回首頁</button>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+
+		
+
+
+
+
+		<!--BOOTSTRAP REQUIRED-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+		<!--JAVASCRIPT-->
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
