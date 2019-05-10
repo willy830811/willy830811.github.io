@@ -17,7 +17,9 @@ $(window).on('resize', function() {
 
 //調整自傳區
 $('#biography').width(windowWidth);
-
+//$('#biography #hide_bar').ready(() => {
+	$('#biography #hide_bar').width($('#biography #hide_bar').height())
+//})
 
 //偵測視窗頂位置
 let window_top = $(window).scrollTop();
@@ -67,18 +69,21 @@ $(window).on('resize', function() {
 $(window).on('resize scroll', function() {
 	if (window_top > biography_top - (windowHeight - biography_height)/2 ) {
 		$('#biography #big_head img').addClass('big_head_move');
-		$('#biography #big_head img.me').eq(1).addClass('big_head_wipe');
+		//$('#biography #big_head img.me').eq(1).addClass('big_head_wipe');
 	}
 })
 
 
 $('#big_head .me').on('mouseenter', function() {
 	$('#hide_bar img').addClass('hide_bar_move');
+
 	$('#big_head .me').on('mouseleave', function() {
 		$('#hide_bar img').removeClass('hide_bar_move');
 	})
 })
 
+$('#biography #bio_text').css('left', $('#big_head').height());
+$('#biography #bio_text').css('width', $('#big_head').width() - $('#big_head').height());
 
 
 
@@ -96,7 +101,7 @@ $('.dot').on('click', function(){
 		experience_now = $('.dot').index($(this));
 			$('.bubble').slideUp();
 			$('.dot').css('border', '');
-			$('.bubble').eq(experience_now).slideDown();
+			$('.bubble').eq(experience_now).delay(600).slideDown();
 	}
 })
 
@@ -139,7 +144,7 @@ skill_scroll = window_top + windowHeight - skill_top;
 if (skill_scroll > 0 && quit_scroll_bar != 1) {
 	quit_scroll_bar = 1;
 	$('.skill_bar').css('left', '0');
-	$('.skill_bar div').slideDown();
+	$('.skill_bar_content').eq(0).slideDown();
 }
 /*
 $(window).on('scroll', function(){
@@ -167,16 +172,20 @@ $(window).on('scroll', function(){
 			$('.skill_bar').css('left', -skill_width + skill_scroll/(windowWidth*0.5)*skill_width +'px');
 			if (skill_scroll > windowWidth*0.5) {
 				$('.skill_bar').css('left', '0');
-				$('.skill_bar div').slideDown();
+				$('.skill_bar_content').eq(0).slideDown();
 				quit_scroll_bar = 1;
 			}
 		}
 	}
-	
-	
-	
 })
 
+$('.skill_bar').on('click', function(){
+	$('.skill_bar').removeClass('skill_bar_clicked');
+	$(this).addClass('skill_bar_clicked');
+	$('.skill_bar_content').slideUp();
+	$('.skill_bar_content').eq($(this).index()).delay(500).slideDown();
+
+})
 
 //作品
 $('#works .carousel-inner p').css('display', 'none');

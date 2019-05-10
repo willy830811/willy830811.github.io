@@ -2,6 +2,16 @@
 	font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-SB", "sans-serif";
 }
 
+h2 {
+	display: inline-block;
+
+	color: #055;
+	border-bottom: 3px #055 solid;
+	border-right: 3px #055 solid;
+	border-top: 1px #055 solid;
+	border-left: 1px #055 solid;
+}
+
 .hide {
 	display: none;
 }
@@ -47,8 +57,7 @@
 /*自傳*/
 #biography .row {
 	position: relative;
-	height: 20rem;
-	background-color: #DDD;
+	height: 15rem;
 }
 
 
@@ -57,7 +66,6 @@
 	position: absolute;
 
 	height: 100%;
-	width: 50vh;
 
 	overflow: hidden;
 }
@@ -66,12 +74,15 @@
 	position: absolute;
 	height: 100%;
 
-	z-index: 2;
+	z-index: 3;
 	pointer-events: none;
 
 	transform: translate(-100%, 0);
 
+	transition: transform 2s;
 	-webkit-transition: transform 2s;
+	-moz-transition: transform 2s;
+	-o-transition: transform 2s;
 }
 
 
@@ -91,23 +102,29 @@
 
 #biography #big_head img.me {
 	position: absolute;
-
 	height: 100%;
-	
+	border-radius: 50%;
+
 	left: 50%;
 	transform: translate(-50%, 0);
-
 	opacity: 1;
 
-	border-radius: 50%;
-	z-index: 1;
-
-	/*transition: left 5s, transform 5s;*/
+	transition: left 2s, transform 2s, opacity 2s;
 	-webkit-transition: left 2s, transform 2s, opacity 2s;
-	/*-moz-transition: left 5s, transform 5s;*/
-	/*-o-transition: left 5s, transform 5s;*/
+	-moz-transition: left 2s, transform 2s, opacity 2s;
+	-o-transition: left 2s, transform 2s, opacity 2s;
 }
 
+#biography #big_head img.me#origin {
+	z-index: 1;
+}
+#biography #big_head img.me#silhouette {
+	z-index: 2;
+}
+
+#biography #big_head img.me#silhouette:hover {
+	opacity: 0;
+}
 
 #biography #big_head img.frame {
 	position: absolute;
@@ -117,26 +134,35 @@
 	left: 50%;
 	transform: translate(-10rem, 0);
 
-	z-index: 3;
+	z-index: 4;
 	pointer-events: none;
 
-	/*transition: left 5s, transform 5s;*/
+	transition: left 2s, transform 2s, opacity 2s;
 	-webkit-transition: left 2s, transform 2s, opacity 2s;
-	/*-moz-transition: left 5s, transform 5s;*/
-	/*-o-transition: left 5s, transform 5s;*/
+	-moz-transition: left 2s, transform 2s, opacity 2s;
+	-o-transition: left 2s, transform 2s, opacity 2s;
 }
-
 
 #biography #big_head img.big_head_move {
 	left: 0;
 	transform: translate(0, 0);
 }
 
-
+/*
 #biography #big_head img.big_head_wipe {
 	opacity: 0;
 }
+*/
 
+#biography #bio_text {
+	position: relative;
+	z-index: 5;
+	vertical-align: middle;
+}
+
+#biography #bio_text p {
+	border-left: 3px #555 solid;
+}
 
 /*簡歷*/
 #experience h2 {
@@ -145,7 +171,7 @@
 
 
 #bar {
-	width: 90%;
+	width: 99%;
 	height: 3px;
 	background-color: #000;
 
@@ -163,27 +189,39 @@
 
 .dot img {
 	position: absolute;
-	transform: translate(-50%, -5rem);
-	height: 5rem;
+	transform: translate(-50%, -4rem);
+	height: 3rem;
 }
 
 .bubble {
 
 }
 
-#contact_me {
-	background-color: #666;
-}
-
-.contact-icon {
-	width: 15%;
-}
 
 
 /*技能*/
 
 .skill_bar {
-	background-color: #555;
+	width: 100%;
+	color: #FFF;
+	background-color: #BDA;
+
+	border-bottom-right-radius: 20px;
+
+	transition: width 0.5s, background-color 0.5s;
+	-webkit-transition: width 0.5s, background-color 0.5s;
+	-moz-transition: width 0.5s, background-color 0.5s;
+	-o-transition: width 0.5s, background-color 0.5s;
+}
+
+.skill_bar:hover {
+	width: 110%;
+	background-color: #FB8;
+}
+
+.skill_bar_clicked {
+	width: 110%;
+	background-color: #FB8;
 }
 
 .skill_bar_content {
@@ -203,7 +241,23 @@
 }
 
 
+/*Contact me*/
+#contact_me {
+	background-color: #BDA;
+}
 
+.contact-icon {
+	width: 15%;
+
+	transition: transform 0.5s;
+	-webkit-transition: transform 0.5s;
+	-moz-transition: transform 0.5s;
+	-o-transition: transform 0.5s;
+}
+
+.contact-icon:hover {
+	transform: rotate(10deg);
+}
 
 
 /*

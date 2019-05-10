@@ -1,0 +1,61 @@
+* {
+	font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-SB", "sans-serif";
+}
+
+.put_middle::before {
+	content:'';
+	display: inline-block;
+	height: 100%;
+	width: 0;
+	vertical-align: middle;
+}
+
+.put_middle_sub {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+
+
+.entrance {
+	background: #DDEEDD;
+}
+
+.bar {
+	width: 1.5rem;
+}
+/*
+.nine_squares {
+
+}
+
+.nine_squares tr {
+	height: 30%;
+}
+
+.nine_squares tr td {
+	width: 30%;
+}
+*/
+.nine_squares .mark {
+	color: #FFFFFF;
+	background-color: #EE1111;
+}
+
+.nine_squares tr td div {
+	width: 100%;
+	height: 100%;
+	background-color: #CCCCCC;
+	font-size: 2rem;
+	vertical-align: middle;
+}
+
+.nine_squares .pink {
+	color: #DDEEDD;
+	background-color: #DDEEDD;
+}
+
+.nine_squares .pink:hover {
+	color: #FFFFFF;
+	background-color: #CCAAFF;
+}

@@ -1,0 +1,58 @@
+* {
+	font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", "DFKai-SB", "sans-serif";
+}
+
+.need_a_fake_element::before {
+	content:'';
+	width: 0;
+	height:100%;
+	display:inline-block;
+	position:relative;
+	vertical-align:middle;
+}
+
+.logo {
+	width: 100%;
+}
+
+#slider img {
+	max-width: 768px;
+	margin:0 auto
+}
+
+.carousel-control-next-icon {
+	background-image : url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-prev-icon {
+	background-image : url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-indicators li {
+	background-color: #999;
+}
+
+.plus_minus {
+	text-align: center;
+	line-height: 100%;
+}
+
+#icon_shopping_cart {
+	height: 2rem;
+
+}
+
+#icon_fb {
+	height: 3rem;
+	/*position: relative;
+	right: 0;*/
+	float: right;
+}
+
+#how_many_to_buy {
+	width: 3rem;
+}
+
+#ddd {
+	width: calc(100% - 10px)
+}
