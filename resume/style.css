@@ -37,6 +37,21 @@ h2 {
 }
 
 
+#skill {
+	overflow: hidden;
+}
+
+.moving_background {
+	z-index: -1;
+	position: absolute;
+	
+}
+
+.header_background {
+	background-color: rgba(255, 255, 255, 0.5);
+	background-clip: padding-box;
+
+}
 
 
 
@@ -55,6 +70,10 @@ h2 {
 
 
 /*自傳*/
+#biography {
+	overflow: hidden;
+}
+
 #biography .row {
 	position: relative;
 	height: 15rem;
@@ -165,13 +184,19 @@ h2 {
 }
 
 /*簡歷*/
+#experience {
+	background-image: url('image/runner_grey.png');
+	background-size: 100% auto;
+	background-origin: border-box;
+}
+
 #experience h2 {
 	margin-bottom: 5rem;
 }
 
 
 #bar {
-	width: 99%;
+	width: 80%;
 	height: 3px;
 	background-color: #000;
 
@@ -194,7 +219,8 @@ h2 {
 }
 
 .bubble {
-
+	background-color: rgba(255, 255, 255, 0.5);
+	background-clip: padding-box;
 }
 
 
@@ -226,8 +252,14 @@ h2 {
 
 .skill_bar_content {
 	display: none;
+	font-size: 1.2rem;
 }
 
+.light-background {
+	background-color: rgba(255, 255, 255, 0.5);
+	background-clip: content-box;
+
+}
 
 /*作品*/
 .carousel-caption {

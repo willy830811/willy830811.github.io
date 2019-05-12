@@ -31,17 +31,21 @@ $(window).on('resize scroll', function() {
 })
 
 
+//飄移背景
+let skill_top = $('#skill').offset().top;
+console.log(skill_top);
+
+$(window).on('resize scroll', function() {
+	$('.moving_background').css('top', window_top * 0.7 - skill_top +'px');
+})
+
 //頁首
 let header_top = $('#header h1').offset().top;
-//console.log('header_top: ' + header_top);
 let header_height = $('#header h1').height();
-//console.log('header_height: ' + header_height);
 
 $(window).on('resize', function() {
 	header_top = $('#header h1').offset().top;
-	//console.log('header_top: ' + header_top);
 	header_height = $('#header h1').height();
-	//console.log('header_height: ' + header_height);
 })
 
 $('#header h1').css('top', header_top + header_height*0.5 - window_top*0.1 +'px');
@@ -91,7 +95,8 @@ $('#biography #bio_text').css('width', $('#big_head').width() - $('#big_head').h
 //簡歷
 for (let i = 0; i < 3; i++) {
 	let bar_length = $('#bar').width();
-	$('.dot').eq(i).css('left', bar_length/2*i+'px');
+	let bar_left = $('#bar').offset().left;
+	$('.dot').eq(i).css('left', bar_left + bar_length/2*i+'px');
 }
 
 let experience_now = 0;
@@ -131,44 +136,32 @@ $('.dot').on('mouseenter', function() {
 
 //技能
 
-let skill_top = $('#skill').offset().top;
+//let skill_top = $('#skill').offset().top;
 let skill_scroll;
 let quit_scroll_bar;
 
 
 let skill_width = $('#skill .skill_bar').width();
+if (windowWidth > 768) {
 $('.skill_bar').css('left', -skill_width);
+}
 
 
 skill_scroll = window_top + windowHeight - skill_top;
+
+if (windowWidth > 768) {
 if (skill_scroll > 0 && quit_scroll_bar != 1) {
 	quit_scroll_bar = 1;
 	$('.skill_bar').css('left', '0');
 	$('.skill_bar_content').eq(0).slideDown();
 }
-/*
-$(window).on('scroll', function(){
-	skill_scroll = window_top + windowHeight - skill_top;
-	console.log(skill_scroll);
-	if (skill_scroll > 0 && quit_scroll_bar != 1) {
+}
 
-		$('.skill_bar').css('left', -skill_width + skill_scroll*0.5 +'px');
-		if (skill_scroll > skill_width*2) {
-			$('.skill_bar').css('left', '0');
-			$('.skill_bar div').slideDown();
-			quit_scroll_bar = 1;
-		}
-	}
-})
-*/
 $(window).on('scroll', function(){
 
-	if (windowWidth < 768) {
-		
-	} else {
+	if (windowWidth > 768) {
 		skill_scroll = window_top + windowHeight - skill_top;
 		if (skill_scroll > 0 && quit_scroll_bar != 1) {
-			console.log(skill_scroll);
 			$('.skill_bar').css('left', -skill_width + skill_scroll/(windowWidth*0.5)*skill_width +'px');
 			if (skill_scroll > windowWidth*0.5) {
 				$('.skill_bar').css('left', '0');
@@ -178,6 +171,9 @@ $(window).on('scroll', function(){
 		}
 	}
 })
+
+
+
 
 $('.skill_bar').on('click', function(){
 	$('.skill_bar').removeClass('skill_bar_clicked');
