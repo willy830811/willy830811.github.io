@@ -23,20 +23,28 @@ $('#biography').width(windowWidth);
 
 //偵測視窗頂位置
 let window_top = $(window).scrollTop();
-//console.log('window_top: ' + window_top);
+console.log('window_top: ' + window_top);
 
 $(window).on('resize scroll', function() {
 	window_top = $(window).scrollTop();
-	//console.log('window_top: ' + window_top);
+	console.log('window_top: ' + window_top);
 })
 
 
 //飄移背景
 let skill_top = $('#skill').offset().top;
-console.log(skill_top);
+console.log('skill_top: ' + skill_top);
 
 $(window).on('resize scroll', function() {
-	$('.moving_background').css('top', window_top * 0.7 - skill_top +'px');
+	$('.moving_background').css('top', (window_top * 1 - skill_top)*0.8 +'px');
+})
+
+
+let biography_top = $('#biography').offset().top;
+console.log('biography_top: ' + biography_top);
+
+$(window).on('resize scroll', function() {
+	$('.moving_background_2').css('top', (window_top * 1 - biography_top)*0.2 +'px');
 })
 
 //頁首
@@ -57,7 +65,7 @@ $(window).on('resize scroll', function() {
 
 
 //自傳
-let biography_top = $('#biography').offset().top;
+//let biography_top = $('#biography').offset().top;
 //console.log('biography_top: ' + biography_top);
 let biography_height = $('#biography').height();
 //console.log('biography_height: ' + biography_height);
@@ -96,7 +104,7 @@ $('#biography #bio_text').css('width', $('#big_head').width() - $('#big_head').h
 for (let i = 0; i < 3; i++) {
 	let bar_length = $('#bar').width();
 	let bar_left = $('#bar').offset().left;
-	$('.dot').eq(i).css('left', bar_left + bar_length/2*i+'px');
+	$('.dot').eq(i).css('left', bar_left + bar_length/2*i - 15 + 'px');
 }
 
 let experience_now = 0;

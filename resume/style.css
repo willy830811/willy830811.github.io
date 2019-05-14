@@ -44,7 +44,15 @@ h2 {
 .moving_background {
 	z-index: -1;
 	position: absolute;
-	
+
+	transition: top 0.1s;
+}
+
+.moving_background_2 {
+	z-index: -1;
+	position: absolute;
+
+	transition: top 0.1s;
 }
 
 .header_background {
@@ -163,8 +171,8 @@ h2 {
 }
 
 #biography #big_head img.big_head_move {
-	left: 0;
-	transform: translate(0, 0);
+
+	transform: translate(-100%, 0);
 }
 
 /*
@@ -175,7 +183,6 @@ h2 {
 
 #biography #bio_text {
 	position: relative;
-	z-index: 5;
 	vertical-align: middle;
 }
 
@@ -185,7 +192,7 @@ h2 {
 
 /*簡歷*/
 #experience {
-	background-image: url('image/runner_grey.png');
+	background-image: url('image/runner.jpg');
 	background-size: 100% auto;
 	background-origin: border-box;
 }
