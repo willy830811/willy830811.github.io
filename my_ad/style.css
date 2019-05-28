@@ -1,0 +1,149 @@
+@font-face {
+	font-family: 'setofont';
+	src: url('setofont.ttf') format("ttf"),
+}
+
+body {
+	font-family: setofont, 'Noto Sans TC', sans-serif;
+}
+
+.hide {
+	display: none;
+}
+
+
+
+.banner {
+	position: relative;
+	width: 970px;
+	height: 250px;
+	overflow: hidden;
+
+	background-color: #DDD;
+}
+
+.background {
+	position: absolute;
+	height: 250px;
+
+	transition: transform 2s;
+}
+
+.background_move {
+	transform: translate(-50px, 0);
+}
+
+.animation_block {
+	position: relative;
+	left: 335px;
+	width: 300px;
+	height: 250px;
+	transition: transform 2s;
+}
+
+.animation_block_move {
+	transform: translate(-335px, 0);
+}
+
+
+img.box {
+	position: absolute;
+	left: 50px;
+	bottom: 20px;
+	width: 200px;
+	z-index: 2;
+
+	transform: rotate(0deg);
+	transition: transform 0.1s;
+}
+
+img.box_move_right {
+	transform: rotate(10deg);
+}
+
+img.box_move_left {
+	transform: rotate(-10deg);
+}
+
+img.dog {
+	position: absolute;
+	width: 100px;
+	top: 70px;
+	left: 100px;
+
+	transition: transform 1s;
+}
+
+img.dog_move {
+	transform: translate(0, -80px);
+}
+
+img.dog_nod {
+	transform: translate(0, -75px);
+}
+
+
+img.right_hand, img.left_hand {
+	position: absolute;
+	width: 50px;
+	bottom: 130px;
+	z-index: 1;
+
+	transition: transform 0.3s;
+}
+
+img.right_hand {
+	right: 70px;
+}
+
+img.left_hand {
+	left: 70px;
+}
+
+img.hand_move {
+	transform: translate(0, -5px);
+}
+
+.text {
+	position: relative;
+	top: 30px;
+	text-align: center;
+	z-index: 3;
+}
+
+.text h1 {
+	position: inline-block;
+}
+
+.text_2 {
+	position: relative;
+	top: 150px;
+	text-align: center;
+	z-index: 3;
+}
+
+.text_2 h1 {
+	position: inline-block;
+}
+
+
+.points {
+	display: inline-block;
+	position: absolute;
+	width: 600px;
+	height: 200px;
+	bottom: 250px;
+	right: 100px;
+	background-color: rgba(255, 255, 255, 0.3);
+	padding: 1rem;
+
+	transition: transform 1s;
+}
+
+.points ul li {
+	font-size: 24px;
+}
+
+.points_move {
+	transform: translate(0, 225px);
+}
