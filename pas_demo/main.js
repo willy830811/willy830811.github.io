@@ -1,13 +1,6 @@
 $(document).ready(() => {
 
 
-
-
-
-
-
-
-
 //偵測觸控螢幕 & 放大字體 & 忽略hover
 
 function isMobile() {
