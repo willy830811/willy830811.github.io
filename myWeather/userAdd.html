@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= title %></title>
+</head>
+
+<body>
+    <form name="addform" action="userAdd" method="post" accept-charset="utf-8">
+        <h1><%= title %></h1>
+        <div>
+            <label>帳號（必填）：</label>
+            <input type="text" name="userID" placeholder="" />
+        </div>
+        <div>
+            <label>名稱（必填）：</label>
+            <input type="text" name="name" placeholder="" />
+        </div>
+        <div>
+            <label>電話（選填）：</label>
+            <input type="text" name="phoneNum" placeholder="" />
+        </div>
+        <div>
+            <input type='submit' value='Submit'>
+            <input type='reset' value='Reset'>
+            <input type='button' value='Back' onclick="javascript: location.href='/'">
+        </div>
+    </form>
+</body>
+
+</html>

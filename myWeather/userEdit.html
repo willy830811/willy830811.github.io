@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= title %></title>
+</head>
+
+<body>
+    <form name="editform" action="userEdit" method="put" accept-charset="utf-8">
+        <h1><%= title %></h1>
+        <div>
+            <label>帳號：</label>
+            <input type="text" name="userID" placeholder="" value="<%=data[0].userID %>" readonly />
+        </div>
+        <div>
+            <label>名稱：</label>
+            <input type="text" name="name" placeholder="" value="<%=data[0].name %>" />
+        </div>
+        <div>
+            <label>電話：</label>
+            <input type="text" name="phoneNum" placeholder="" value="<%=data[0].phoneNum %>" />
+        </div>
+        <div>
+            <input type='submit' value='Submit'>
+            <input type='reset' value='Reset'>
+            <input type='button' value='Back' onclick="javascript: window.history.back();">
+        </div>
+    </form>
+</body>
+
+</html>
